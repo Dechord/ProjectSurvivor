@@ -33,6 +33,9 @@ namespace ProjectSurvivor
         [RuntimeInitializeOnLoadMethod]
         public static void AutoInit()
         {
+            ResKit.Init();
+            UIKit.Root.SetResolution(1920, 1080, 1);
+
             Global.Coin.Value = PlayerPrefs.GetInt("coin", 0);
             Global.Coin.Register((coin) =>
             {
