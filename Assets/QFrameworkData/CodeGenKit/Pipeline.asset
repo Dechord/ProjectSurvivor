@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621f3f918dd5423d93a746ad8fc9082d, type: 3}
+  m_Name: Pipeline
+  m_EditorClassIdentifier: 
+  CurrentTask:
+    ShowLog: 0
+    Status: 1
+    GameObject: {fileID: 0}
+    From: 0
+    NameToFullName: []
+    BindInfos:
+    - TypeName: UnityEngine.UI.Button
+      PathToRoot: BtnExpPercentUpgrade
+      MemberName: BtnExpPercentUpgrade
+    - TypeName: UnityEngine.UI.Button
+      PathToRoot: BtnCoinPercentUpgrade
+      MemberName: BtnCoinPercentUpgrade
+    - TypeName: UnityEngine.UI.Button
+      PathToRoot: BtnCoinPanelClose
+      MemberName: BtnCoinPanelClose
+    - TypeName: UnityEngine.UI.Text
+      PathToRoot: CoinText
+      MemberName: CoinText
+    ScriptsFolder: Assets/Scripts/Game
+    ClassName: CoinUpgradePanel
+    Namespace: ProjectSurvivor
+    MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ProjectSurvivor\r\n{\r\n\tpublic
+      partial class CoinUpgradePanel : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:c1451cc7-be37-4900-8d19-e766045cb089\r\nusing UnityEngine;\r\n\r\nnamespace
+      ProjectSurvivor\r\n{\r\n\tpublic partial class CoinUpgradePanel\r\n\t{\r\n\r\n\t\tpublic
+      UnityEngine.UI.Button BtnExpPercentUpgrade;\r\n\r\n\t\tpublic UnityEngine.UI.Button
+      BtnCoinPercentUpgrade;\r\n\r\n\t\tpublic UnityEngine.UI.Button BtnCoinPanelClose;\r\n\r\n\t\tpublic
+      UnityEngine.UI.Text CoinText;\r\n\r\n\t}\r\n}\r\n"
