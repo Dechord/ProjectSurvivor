@@ -1,4 +1,4 @@
-// Generate Id:c1451cc7-be37-4900-8d19-e766045cb089
+// Generate Id:ac7be5fb-2132-4a30-a825-1ed85301eeeb
 using UnityEngine;
 
 namespace ProjectSurvivor
@@ -9,6 +9,8 @@ namespace ProjectSurvivor
 		public UnityEngine.UI.Button BtnExpPercentUpgrade;
 
 		public UnityEngine.UI.Button BtnCoinPercentUpgrade;
+
+		public UnityEngine.UI.Button BtnMaxHpUpgrade;
 
 		public UnityEngine.UI.Button BtnCoinPanelClose;
 

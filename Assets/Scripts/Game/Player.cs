@@ -15,23 +15,36 @@ namespace ProjectSurvivor
                 {
                     if (hitBox.Owner.CompareTag("Enemy"))
                     {
-                        //
-                        Abilities.gameObject.SetActive(false);
-                        this.DestroyGameObjGracefully();
+                        Global.HP.Value--;
+                        
+                        if (Global.HP.Value <= 0)
+                        {
+                            AudioKit.PlaySound("Die");
+                            //
+                            Abilities.gameObject.SetActive(false);
+                            this.DestroyGameObjGracefully();
+                            //
+                            UIKit.OpenPanel<UIGameOverPanel>();
+                        }
+                        else 
+                        {
+                            AudioKit.PlaySound("Hurt");
+                        }
                     }                  
-                }               
-                UIKit.OpenPanel<UIGameOverPanel>();
+                }                               
 			}).UnRegisterWhenGameObjectDestroyed(this);
         }
 
 
-        private void Update()
+        private void FixedUpdate()
         {
-            var horizontal = Input.GetAxis("Horizontal");
-            var vertical = Input.GetAxis("Vertical");
+            var horizontal = Input.GetAxisRaw("Horizontal");
+            var vertical = Input.GetAxisRaw("Vertical");
 
-            Vector2 direction = new Vector2(horizontal, vertical).normalized;
-            transform.Translate(direction * MovementSpeed * Time.deltaTime);
+            var targetVelocity = new Vector2(horizontal, vertical).normalized * MovementSpeed;
+
+
+            Rigidbody2D.velocity = Vector2.Lerp(Rigidbody2D.velocity, targetVelocity, 1.0f - Mathf.Exp(-Time.fixedDeltaTime * 5));
         }
     }
 }

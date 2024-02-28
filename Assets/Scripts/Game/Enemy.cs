@@ -17,15 +17,22 @@ namespace ProjectSurvivor
         }
 
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (playerTrans != null)
             {
                 var direction = (playerTrans.position - transform.position).normalized;
 
-                transform.Translate(direction * MovementSpeed * Time.deltaTime);
+                SelfRigidbody2D.velocity = direction * MovementSpeed;
             }
+            else 
+            {
+                SelfRigidbody2D.velocity = Vector2.zero;
+            }
+        }
 
+        private void Update()
+        {           
             if (HP <= 0)
             {
                 Global.GeneratePowUp(gameObject);
@@ -39,6 +46,11 @@ namespace ProjectSurvivor
             if (isIngore) return;
             isIngore = true;
             Sprite.color = Color.red;
+            //
+            AudioKit.PlaySound("Hit");
+            //
+            FloaingTextController.Play(transform.position + Vector3.up * 0.5f, value.ToString());
+            //
             ActionKit.Delay(0.2f, () =>
             {
                 HP -= value;

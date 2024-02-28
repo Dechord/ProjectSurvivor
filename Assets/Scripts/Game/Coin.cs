@@ -9,6 +9,7 @@ namespace ProjectSurvivor
         {
             if (other.GetComponent<CollectableArea>())
             {
+                AudioKit.PlaySound("Coin");
                 Global.Coin.Value++;
                 this.DestroyGameObjGracefully();
             }

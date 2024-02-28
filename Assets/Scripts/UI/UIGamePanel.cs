@@ -18,6 +18,16 @@ namespace ProjectSurvivor
 				EnemyCountText.text = $"µÐÈË£º{enemyCount}";
 			}).UnRegisterWhenGameObjectDestroyed(gameObject);
 
+			//
+			Global.HP.RegisterWithInitValue((hp) => {
+				HPText.text = $"HP£º({Global.HP.Value}/{Global.MaxHP.Value})";
+			}).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+			//
+			Global.MaxHP.RegisterWithInitValue((hp) => {
+				HPText.text = $"HP£º({Global.HP.Value}/{Global.MaxHP.Value})";
+			}).UnRegisterWhenGameObjectDestroyed(gameObject);
+
 			// please add init code here
 			Global.Exp.RegisterWithInitValue((exp) => {
 				ExpText.text = $"¾­Ñé£º({exp}/{Global.ExpToNextLv})";
@@ -42,6 +52,7 @@ namespace ProjectSurvivor
 			{
 				UpgradeRoot.Show();
 				Time.timeScale = 0;
+				AudioKit.PlaySound("LevelUp");
 			}).UnRegisterWhenGameObjectDestroyed(gameObject);
 			//
 			Global.Coin.RegisterWithInitValue((coin)=> 
@@ -66,6 +77,8 @@ namespace ProjectSurvivor
 				Global.SimpleAbilityDamage.Value *= 1.5f;
 				UpgradeRoot.Hide();
 				Time.timeScale = 1.0f;
+				//
+				AudioKit.PlaySound("AbilityLevelUp");
 			});
 
 			BtnSimpleAbilityDurationUpgrade.onClick.AddListener(() =>
@@ -73,6 +86,8 @@ namespace ProjectSurvivor
 				Global.SimpleAbilityDuration.Value *= 0.8f;
 				UpgradeRoot.Hide();
 				Time.timeScale = 1.0f;
+				//
+				AudioKit.PlaySound("AbilityLevelUp");
 			});
 
 			//
@@ -83,8 +98,11 @@ namespace ProjectSurvivor
 				//
 				if (enemyGenerator.LastWave && enemyGenerator.CurrentWave == null && EnemyGenerator.EnemyCount.Value == 0)
 				{
+					//
+					this.CloseSelf();
+
 					UpgradeRoot.Hide();
-					UIKit.OpenPanel<UIGamePassPanel>();
+					UIKit.OpenPanel<UIGamePassPanel>();					
 				}
 			}).UnRegisterWhenGameObjectDestroyed(gameObject);
 		}

@@ -30,6 +30,8 @@ namespace ProjectSurvivor
 				this.CloseSelf();
 				SceneManager.LoadScene("GameStart");
 			});
+
+			AudioKit.PlaySound("GamePass");
 		}
 		
 		protected override void OnOpen(IUIData uiData = null)
