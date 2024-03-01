@@ -59,8 +59,11 @@
     <Compile Include="Assets\Scripts\Game\HitBox.Designer.cs" />
     <Compile Include="Assets\Scripts\UI\UIGameOverPanel.cs" />
     <Compile Include="Assets\Scripts\Game\GameUIController.Designer.cs" />
+    <Compile Include="Assets\Scripts\PowerUp\HP.Designer.cs" />
     <Compile Include="Assets\Scripts\UI\UIGameOverPanel.Designer.cs" />
+    <Compile Include="Assets\Scripts\System\CoinUpgrade\CoinUpgradeSystem.cs" />
     <Compile Include="Assets\Scripts\Game\PowerUpManager.Designer.cs" />
+    <Compile Include="Assets\Scripts\PowerUp\HP.cs" />
     <Compile Include="Assets\Scripts\Game\Player.Designer.cs" />
     <Compile Include="Assets\Scripts\Game\Coin.Designer.cs" />
     <Compile Include="Assets\Scripts\UI\UIGamePassPanel.Designer.cs" />
@@ -68,6 +71,7 @@
     <Compile Include="Assets\Scripts\Game\CollectableArea.cs" />
     <Compile Include="Assets\Scripts\UI\UIGameStartOnlyPanel.Designer.cs" />
     <Compile Include="Assets\Scripts\Game\Enemy.cs" />
+    <Compile Include="Assets\Scripts\PowerUp\GetAllExp.cs" />
     <Compile Include="Assets\Scripts\Game\GameStartController.Designer.cs" />
     <Compile Include="Assets\Scripts\Global.cs" />
     <Compile Include="Assets\Scripts\Game\CoinUpgradePanel.Designer.cs" />
@@ -75,6 +79,8 @@
     <Compile Include="Assets\Scripts\Game\Exp.Designer.cs" />
     <Compile Include="Assets\Scripts\Game\UIGameStartPanel.Designer.cs" />
     <Compile Include="Assets\Scripts\UI\UIGamePassPanel.cs" />
+    <Compile Include="Assets\Scripts\System\CoinUpgrade\CoinUpgradeItem.cs" />
+    <Compile Include="Assets\Scripts\PowerUp\Bomb.cs" />
     <Compile Include="Assets\Scripts\Game\Enemy.Designer.cs" />
     <Compile Include="Assets\Scripts\Game\EnemyGenerator.cs" />
     <Compile Include="Assets\Scripts\Game\Exp.cs" />
@@ -82,24 +88,22 @@
     <Compile Include="Assets\Scripts\Game\GameStartController.cs" />
     <Compile Include="Assets\Scripts\Game\CoinUpgradePanel.cs" />
     <Compile Include="Assets\Scripts\Game\CollectableArea.Designer.cs" />
+    <Compile Include="Assets\Scripts\PowerUp\Bomb.Designer.cs" />
+    <Compile Include="Assets\Scripts\Game\FloaingTextController.cs" />
     <Compile Include="Assets\Scripts\Ability\SimpleAbility.Designer.cs" />
     <Compile Include="Assets\Scripts\UI\UIGamePanel.Designer.cs" />
+    <Compile Include="Assets\Scripts\Game\FloaingTextController.Designer.cs" />
     <Compile Include="Assets\Scripts\Game\PowerUpManager.cs" />
     <Compile Include="Assets\Scripts\Game\UIGameStartPanel.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
+    <Compile Include="Assets\Scripts\PowerUp\GetAllExp.Designer.cs" />
     <Compile Include="Assets\Scripts\Game\EnemyGenerator.Designer.cs" />
     <Compile Include="Assets\Scripts\Ability\SimpleAbility.cs" />
     <Compile Include="Assets\Scripts\Game\Coin.cs" />
     <Compile Include="Assets\Scripts\UI\UIGameStartOnlyPanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIGamePanel.cs" />
-    <Compile Include="Assets\Scripts\PowerUp\HP.Designer.cs" />
-    <Compile Include="Assets\Scripts\PowerUp\HP.cs" />
-    <Compile Include="Assets\Scripts\PowerUp\Bomb.cs" />
-    <Compile Include="Assets\Scripts\PowerUp\Bomb.Designer.cs" />
-    <Compile Include="Assets\Scripts\PowerUp\GetAllExp.Designer.cs" />
-    <Compile Include="Assets\Scripts\PowerUp\GetAllExp.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Game\FloaingTextController.Designer.cs" />
-    <Compile Include="Assets\Scripts\Game\FloaingTextController.cs" />
+    <Compile Include="Assets\Scripts\System\Save\SaveSystem.cs" />
+    <Compile Include="Assets\Scripts\System\Save\ICanSave.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

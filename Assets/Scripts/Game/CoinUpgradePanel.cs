@@ -1,56 +1,84 @@
 using UnityEngine;
 using QFramework;
+using UnityEngine.UI;
+using System.Linq;
 
 namespace ProjectSurvivor
 {
-	public partial class CoinUpgradePanel : ViewController
+	public partial class CoinUpgradePanel : ViewController, IController
 	{
+        
+
         private void Awake()
         {
             BtnCoinPanelClose.onClick.AddListener(()=> 
             {
                 this.Hide();
             });
+          
+            CoinUpgradeItemPrefab.Hide();
 
-            if (Global.Coin.Value >= -500)
-            {
-                BtnCoinPercentUpgrade.Show();
-                BtnExpPercentUpgrade.Show();
-                BtnMaxHpUpgrade.Show();
-            }
-            else
-            {
-                BtnCoinPercentUpgrade.Hide();
-                BtnExpPercentUpgrade.Hide();
-                BtnMaxHpUpgrade.Hide();
-            }
-
-            BtnCoinPercentUpgrade.onClick.AddListener(() => {
-                Global.Coin.Value -= 5;
-                Global.CoinPercent.Value += 0.1f;
-                //
-                AudioKit.PlaySound("AbilityLevelUp");
-
-            });
-
-            BtnExpPercentUpgrade.onClick.AddListener(() => {
-                Global.Coin.Value -= 5;
-                Global.ExpPercent.Value += 0.1f;
-                //
-                AudioKit.PlaySound("AbilityLevelUp");
-            });
-
-            BtnMaxHpUpgrade.onClick.AddListener(() => {
-                Global.Coin.Value -= 30;
-                Global.MaxHP.Value ++;
-                //
-                AudioKit.PlaySound("AbilityLevelUp");
-            });
-
-            Global.Coin.RegisterWithInitValue((coin)=> 
+            Global.Coin.RegisterWithInitValue((coin) =>
             {
                 CoinText.text = $"½ð±Ò£º{coin}";
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
+
+            foreach (var coinUpgradeItem in this.GetSystem<CoinUpgradeSystem>().Items)
+            {
+                CoinUpgradeItemPrefab.InstantiateWithParent(CoinUpgradeItemRoot)
+                    .Self((prefabItem) =>
+                    {
+                        var itemCache = coinUpgradeItem;
+                        var selfCache = prefabItem;
+                        prefabItem.GetComponentInChildren<Text>().text = $"{coinUpgradeItem.Desciption}{coinUpgradeItem.Price} ½ð±Ò";
+                        prefabItem.onClick.AddListener(() =>
+                        {
+                            itemCache.Upgrade();
+                            //
+                            AudioKit.PlaySound("AbilityLevelUp");
+                        });
+
+                        //¼ì²âÊÇ·ñÏÔÊ¾
+                        if (itemCache.IsShow)
+                        {
+                            selfCache.Show();
+                        }
+                        else 
+                        {
+                            selfCache.Hide();
+                        }
+
+                        //
+                        CoinUpgradeSystem.OnCoinUpgradeSystemChanged.Register(() =>
+                        {
+                            //¼ì²âÊÇ·ñÏÔÊ¾
+                            if (itemCache.IsShow)
+                            {
+                                selfCache.Show();
+                            }
+                            else
+                            {
+                                selfCache.Hide();
+                            }
+                        }).UnRegisterWhenGameObjectDestroyed(selfCache);
+
+                        //
+                        Global.Coin.RegisterWithInitValue((coin) =>
+                        {
+                            selfCache.interactable = coin >= itemCache.Price;
+                        }).UnRegisterWhenGameObjectDestroyed(selfCache);
+                    });
+            }
+        }
+
+        void Start()
+        {
+            
+        }
+
+        public IArchitecture GetArchitecture()
+        {
+            return Global.Interface;
         }
     }
 }

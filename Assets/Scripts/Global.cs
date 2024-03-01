@@ -112,6 +112,8 @@ namespace ProjectSurvivor
         protected override void Init()
         {
             //×¢²áÄ£¿é
+            this.RegisterSystem(new SaveSystem());
+            this.RegisterSystem(new CoinUpgradeSystem());
         }
 
         public static int ExpToNextLv => Level.Value * 5;
