@@ -54,9 +54,9 @@ namespace ProjectSurvivor
             return this;
         }
 
-        public CoinUpgradeItem WithUpdateAction(Action<CoinUpgradeItem> update)
+        public CoinUpgradeItem WithOnUpgrade(Action<CoinUpgradeItem> onUpgrade)
         {
-            mOnUpdate = update;
+            mOnUpdate = onUpgrade;
             return this;
         }
 

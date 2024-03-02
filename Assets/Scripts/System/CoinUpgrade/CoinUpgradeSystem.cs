@@ -25,7 +25,7 @@ namespace ProjectSurvivor
                 .WithKey("coin_percentLv1")
                 .WithDesciption("金币的掉落概率Lv1：")
                 .WithPrice(5)
-                .WithUpdateAction((item) =>
+                .WithOnUpgrade((item) =>
                 {
                     Global.CoinPercent.Value += 0.1f;
                     Global.Coin.Value -= item.Price;
@@ -40,7 +40,7 @@ namespace ProjectSurvivor
                 {
                     return coinUpgradeLv1.UpgradeFinished;
                 })
-                .WithUpdateAction((item) =>
+                .WithOnUpgrade((item) =>
                 {
                     Global.CoinPercent.Value += 0.1f;
                     Global.Coin.Value -= item.Price;
@@ -55,7 +55,7 @@ namespace ProjectSurvivor
                 {
                     return coinUpgradeLv2.UpgradeFinished;
                 })
-                .WithUpdateAction((item) =>
+                .WithOnUpgrade((item) =>
                 {
                     Global.CoinPercent.Value += 0.1f;
                     Global.Coin.Value -= item.Price;
@@ -66,7 +66,7 @@ namespace ProjectSurvivor
                 .WithKey("exp_percent")
                 .WithDesciption("经验的掉落概率升级：")
                 .WithPrice(5)
-                .WithUpdateAction((item) =>
+                .WithOnUpgrade((item) =>
                 {
                     Global.ExpPercent.Value += 0.1f;
                     Global.Coin.Value -= item.Price;
@@ -78,7 +78,7 @@ namespace ProjectSurvivor
                 .WithKey("max_hp")
                 .WithDesciption("主角最大血量+1：")
                 .WithPrice(30)
-                .WithUpdateAction((item) =>
+                .WithOnUpgrade((item) =>
                 {
                     Global.MaxHP.Value++;
                     Global.Coin.Value -= item.Price;

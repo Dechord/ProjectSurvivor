@@ -50,7 +50,7 @@ namespace ProjectSurvivor
 			//
 			Global.Level.Register((lv) =>
 			{
-				UpgradeRoot.Show();
+				ExpUpgradePanel.Show();
 				Time.timeScale = 0;
 				AudioKit.PlaySound("LevelUp");
 			}).UnRegisterWhenGameObjectDestroyed(gameObject);
@@ -71,25 +71,7 @@ namespace ProjectSurvivor
 				}
 			}).UnRegisterWhenGameObjectDestroyed(gameObject);
 			//
-			UpgradeRoot.Hide();
-			BtnUpgrade.onClick.AddListener(() =>
-			{
-				Global.SimpleAbilityDamage.Value *= 1.5f;
-				UpgradeRoot.Hide();
-				Time.timeScale = 1.0f;
-				//
-				AudioKit.PlaySound("AbilityLevelUp");
-			});
-
-			BtnSimpleAbilityDurationUpgrade.onClick.AddListener(() =>
-			{
-				Global.SimpleAbilityDuration.Value *= 0.8f;
-				UpgradeRoot.Hide();
-				Time.timeScale = 1.0f;
-				//
-				AudioKit.PlaySound("AbilityLevelUp");
-			});
-
+			ExpUpgradePanel.Hide();			
 			//
 			var enemyGenerator = FindObjectOfType<EnemyGenerator>();
 			ActionKit.OnUpdate.Register(() =>

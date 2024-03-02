@@ -32,6 +32,7 @@ namespace ProjectSurvivor
             SimpleAbilityDamage.Value = 1.0f;
             SimpleAbilityDuration.Value = 1.5f;
             CurrentSeconds.Value = 0;
+            Interface.GetSystem<ExpUpgradeSystem>().ResetData();
         }
 
         [RuntimeInitializeOnLoadMethod]
@@ -64,6 +65,9 @@ namespace ProjectSurvivor
             {
                 PlayerPrefs.SetFloat(nameof(coinPercent), coinPercent);
             });
+
+            //³õÊ¼»¯
+            var _ = Interface;
         }
 
         public static void GeneratePowUp(GameObject gameObject)
@@ -114,6 +118,7 @@ namespace ProjectSurvivor
             //×¢²áÄ£¿é
             this.RegisterSystem(new SaveSystem());
             this.RegisterSystem(new CoinUpgradeSystem());
+            this.RegisterSystem(new ExpUpgradeSystem());
         }
 
         public static int ExpToNextLv => Level.Value * 5;
