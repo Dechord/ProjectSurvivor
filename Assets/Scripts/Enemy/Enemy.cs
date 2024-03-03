@@ -3,7 +3,7 @@ using QFramework;
 
 namespace ProjectSurvivor
 {
-	public partial class Enemy : ViewController
+	public partial class Enemy : ViewController,IEnemy
 	{
 		public float MovementSpeed = 2.0f;
         public float HP = 3;
@@ -41,9 +41,9 @@ namespace ProjectSurvivor
         }
 
         private bool isIngore = false;
-        public void Hurt(float value)
+        public void Hurt(float value,bool force = false)
         {
-            if (isIngore) return;
+            if (isIngore && !force) return;
             isIngore = true;
             Sprite.color = Color.red;
             //
