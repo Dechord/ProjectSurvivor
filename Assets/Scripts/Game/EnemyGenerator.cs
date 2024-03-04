@@ -5,23 +5,16 @@ using System;
 
 namespace ProjectSurvivor
 {
-	[Serializable]
-	public class EnemyWave
-	{
-		public GameObject EnemyPrefab;
-		public float GenerateWaveSeconds;
-		public float GenerateDuration;
-	}
+	
 
 	public partial class EnemyGenerator : ViewController
 	{
+		[SerializeField]
+		public LevelConfig Config;
 		private Transform playerTrans;
 		private float mGenerateDistance = 10.0f;
 
 		public static BindableProperty<int> EnemyCount = new BindableProperty<int>(0);
-
-		[SerializeField]
-		List<EnemyWave> mEnemyWaveList = new List<EnemyWave>();
 
 		Queue<EnemyWave> mEnemyWaveQueue = new Queue<EnemyWave>();
 
@@ -31,7 +24,8 @@ namespace ProjectSurvivor
 
 		public int WaveCount = 0;
 
-		public bool LastWave => WaveCount == mEnemyWaveList.Count;
+		private int mTotalCount = 0;
+		public bool LastWave => WaveCount == mTotalCount;
 
 		public EnemyWave CurrentWave => mCurrentWave;
 
@@ -40,9 +34,13 @@ namespace ProjectSurvivor
 			// Code Here
 			playerTrans = GameObject.Find("Player").transform;
             //
-            foreach (var wave in mEnemyWaveList)
+            foreach (var waveGroup in Config.EnemyWaveGroups)
             {
-				mEnemyWaveQueue.Enqueue(wave);
+                foreach (var wave in waveGroup.Waves)
+                {
+					mTotalCount++;
+					mEnemyWaveQueue.Enqueue(wave);
+				}				
 			}
 		}
 
